@@ -1,0 +1,224 @@
+%%%%%%%%%%%%%%%%% EINSTELLUNGEN %%%%%%%%%%%%%%%
+\documentclass[a4paper,11pt]{memoir}
+\usepackage[no-math]{fontspec}
+\usepackage{polyglossia}
+\setdefaultlanguage[babelshorthands=true]{german}
+\setotherlanguage[variant=ancient]{greek}
+\setotherlanguages{french,english,latin}
+\newfontfamily\greekfont[Mapping=tex-text,Script=Greek,Ligatures=Common]{GFS Didot}
+\setromanfont[Mapping=tex-text,Numbers=Lowercase,Ligatures=Common]{TeX Gyre Pagella}
+\linespread{1.08}
+\usepackage[french=guillemets,german=guillemets]{csquotes} % Verwaltung von Anführungszeichen
+\usepackage[backend=biber,style=authortitle-dw,hyperref,edsuper=true,idembib=true,idembibformat=dash,maxnames=4,citetracker=strict,ibidtracker=false,pagetracker=true,terselos=true]{biblatex} % Literaturverwaltung
+\bibliography{diss} % Bibtex-Datenbank
+\usepackage[protrusion=true]{microtype} % optischer Randausgleich
+%%%%%%%%%%%% Seitenlayout %%%%%%%%%%%%%%%%%%%%%%%%%%
+\settrimmedsize{297mm}{210mm}{*}
+\setlength{\trimtop}{0pt}
+\setlength{\trimedge}{\stockwidth}
+\addtolength{\trimedge}{-\paperwidth}
+\settypeblocksize{42\onelineskip}{30pc}{*}
+\setlrmargins{3.1cm}{*}{*}
+\setulmargins{3.5cm}{*}{*}
+\setheadfoot{\onelineskip}{3\onelineskip}
+\setheaderspaces{*}{\onelineskip}{*}
+\setmarginnotes{17pt}{100pt}{\onelineskip}
+\checkandfixthelayout
+% Kopf-/Fußzeilen
+\nouppercaseheads 
+\addtopsmarks{headings}{}{
+\createmark{chapter}{both}{shownumber}{}{. \space}
+}
+\pagestyle{headings}
+%%%%%%%% Überschriften %%%%%%%%%%%%%%
+%%%%%%%%%%%% Formatierung der Kapitelüberschriften %%%%%%%%%%%%%%%%%%
+\makechapterstyle{diss}{
+  \renewcommand{\printchaptername}{}
+  \renewcommand{\chapternamenum}{}
+  \renewcommand{\chaptitlefont}{\LARGE}
+  \renewcommand{\chapnumfont}{\chaptitlefont}
+  \renewcommand{\printchapternum}{\chapnumfont \thechapter\space}
+  \renewcommand{\afterchapternum}{}
+}
+\chapterstyle{diss}
+%%%%%%%%%%%%%%%% Formatierung der Sections u.s.w. %%%%%%%%%%%%%%%%%%%
+\setsecnumformat{\csname the#1\endcsname \hspace{1ex}}
+\setsecheadstyle{\Large}
+\setsubsecheadstyle{\large}
+\setsubsubsecheadstyle{\normalfont}
+\setparaheadstyle{\normalfont\raggedright}
+%%%%%%%%%%% Abstände vor Kapitel etc. %%%
+\setlength{\beforechapskip}{2\baselineskip}
+\setlength{\midchapskip}{.5\baselineskip}
+\setlength{\afterchapskip}{\baselineskip}
+\setbeforesecskip{2\baselineskip}
+\setbeforeparaskip{0\baselineskip}
+\setaftersecskip{\baselineskip}
+%%%%%%%%%%%%%% zweispaltiger Text %%%%%%%%%%%%%%%%%
+\usepackage{parallel}
+%%%% Verwendung \LR{linke Spalte}{rechte Spalte}
+\newcommand\ZLR[2]{%
+	\vspace{0.5\baselineskip}
+	\begin{Parallel}{}{}
+    \ParallelLText{\small\noindent #1}%
+    \ParallelRText{\small\noindent #2}%
+    \ParallelPar
+  	\end{Parallel}
+	\vspace{0.5\baselineskip}%
+} 
+%%%%%%% Fußnoten %%%%%%%%%%%%%%%%%%
+\setlength{\footmarkwidth}{0em} 
+\setlength{\footmarksep}{0em}
+%%%%%%%%%%%% Indices erstellen %%%%%%%%%%%%%%%%%%%%
+\usepackage[nonewpage]{imakeidx}
+\makeindex[name=antik,title=Index der antiken Autoren,intoc=true,columns=1]
+\newcommand{\stelle}[3]{#1, #2 #3\aindex{#1!#2!#3}} % Befehl zur Angabe von Stellen im Index der antiken Autoren: #1 Autor, #2 Buch, #3 Kapitel,Paragraph
+\newcommand{\aindex}{\index[antik]}
+\makeindex[name=bibel,title=Index der Bibelstellen,intoc=true,columns=1]
+\usepackage[RGG]{bibleref-german} % Paket zur Angabe und Indizierung von Bibelstellen
+\newcommand{\bibel}[2]{\ibibleverse{#1}(#2)} % #1 Buch #2 Stelle (Muster Kapitel:Vers)
+\newcommand{\bindex}{\index[bibel]}
+\renewcommand{\biblerefindex}{\index[bibel]}
+\makeatletter
+\brg@providecs{br@ITim}{\br@ITimothy}% Nötige Korrekturen von bibleref-german
+\brg@providecs{br@IITim}{\br@IITimothy}%
+\brg@providecs{br@1Tim}{\br@ITimothy}%
+\brg@providecs{br@2Tim}{\br@IITimothy}%
+\makeatother
+\biblerefmap{Gen}{01} % Für die richtige Sortierung des Index
+\biblerefmap{Ex}{02}
+\biblerefmap{Lev}{03}
+\biblerefmap{Num}{04}
+\biblerefmap{Dt}{05}
+
+\biblerefmap{Jos}{06}
+\biblerefmap{Ri}{07}
+\biblerefmap{Ru}{08}
+\biblerefmap{1Sam}{09}
+\biblerefmap{2Sam}{11}
+\biblerefmap{1Kön}{11}
+\biblerefmap{2Kön}{12}
+\biblerefmap{1Chr}{13}
+\biblerefmap{2Chr}{14}
+\biblerefmap{Esr}{15}
+\biblerefmap{Neh}{16}
+\biblerefmap{Est}{17}
+\biblerefmap{Tob}{18}
+\biblerefmap{Jdt}{19}
+\biblerefmap{1Makk}{20}
+\biblerefmap{2Makk}{21}
+
+\biblerefmap{Hi}{22}
+\biblerefmap{Ps}{23}
+\biblerefmap{Spr}{24}
+\biblerefmap{Koh}{25}
+\biblerefmap{Hld}{26}
+\biblerefmap{Weish}{27}
+\biblerefmap{Sir}{28}
+
+\biblerefmap{Jes}{29}
+\biblerefmap{Jer}{30}
+\biblerefmap{Klgl}{31}
+\biblerefmap{Bar}{32}
+\biblerefmap{Hes}{33}
+\biblerefmap{Dan}{34}
+\biblerefmap{Hos}{35}
+\biblerefmap{Joel}{36}
+\biblerefmap{Am}{37}
+\biblerefmap{Obd}{38}
+\biblerefmap{Jon}{39}
+\biblerefmap{Mi}{40}
+\biblerefmap{Nah}{41}
+\biblerefmap{Hab}{42}
+\biblerefmap{Zef}{43}
+\biblerefmap{Hag}{44}
+\biblerefmap{Sach}{45}
+\biblerefmap{Mal}{46}
+
+\biblerefmap{Mt}{47}
+\biblerefmap{Mk}{48}
+\biblerefmap{Lk}{49}
+\biblerefmap{Joh}{50}
+\biblerefmap{Apg}{51}
+\biblerefmap{Röm}{52}
+\biblerefmap{1Kor}{53}
+\biblerefmap{2Kor}{54}
+\biblerefmap{Gal}{55}
+\biblerefmap{Eph}{56}
+\biblerefmap{Phil}{57}
+\biblerefmap{Kol}{58}
+\biblerefmap{1Thess}{59}
+\biblerefmap{2Thess}{60}
+\biblerefmap{1Tim}{61}
+\biblerefmap{2Tim}{62}
+\biblerefmap{Tit}{63}
+\biblerefmap{Phlm}{64}
+\biblerefmap{Hebr}{65}
+\biblerefmap{Jak}{66}
+\biblerefmap{1Petr}{67}
+\biblerefmap{2Petr}{68}
+\biblerefmap{1Joh}{69}
+\biblerefmap{2Joh}{70}
+\biblerefmap{3Joh}{71}
+\biblerefmap{Jud}{72}
+\biblerefmap{Apk}{73}
+\makeindex[name=autoren,title=Index der modernen Autoren,intoc=true,columns=1] % Index der modernen Autoren
+\newcommand{\autindex}{\index[autoren]}
+\indexsetup{level=\section*,toclevel=section,headers={\indexname}{\indexname}}
+%%%%%% Hyperref und Titelangaben
+\usepackage[implicit=true,plainpages=false,hyperindex=true,pdfpagelabels,pdfa,pdfusetitle]{hyperref}
+\hypersetup{%
+   pdftitle = {TITEL},
+   pdfsubject = {THEMA},
+   pdfkeywords = {SCHLAGWORTE},
+   pdfauthor = {\textcopyright\ AUTOR},
+}
+\usepackage{longtable,booktabs} % Tabellen
+%%%%%%% Zum Schluß noch Hebräisch (wegen bidi)
+\setotherlanguage{hebrew}
+\newfontfamily\hebrewfont[Mapping=tex-text,Script=Greek,Ligatures=Common]{Ezra SIL}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Dokumentanfang
+\begin{document}
+%%%%%%%%%%%%%%%%%% TITELEI %%%%%%%%%%%%%%%%%%
+\begin{titlingpage}
+\thispagestyle{empty}
+\begin{center}
+\Large{AUTOR\\TITEL}\\
+\end{center}
+\vspace*{\fill}
+\begin{center}
+\large{JAHR}\par
+\end{center}
+\end{titlingpage}
+%%%%%%%%%%%%%%%%%% VORWORT %%%%%%%%%%%%%%%%%%%%%
+\frontmatter
+\input{vorwort.tex}
+%%%%%%%%%%%%%%%%%% INHALTSVERZEICHNIS %%%%%%%%%%%%
+\cleardoublepage
+\renewcommand{\contentsname}{Inhalt}
+\tableofcontents*
+%%%%%%%%%%%%%%%%%% HAUPTTEXT %%%%%%%%%%%%%%%%%%
+\mainmatter
+\input{kapitel-1.tex} % Verlinkung der Unterkapitel
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%% ANHANG  %%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\backmatter
+%%% Literaturverzeichnis
+\nocite{*} % Alle Titel in der Bibtex-Datei werden im Literaturverzeichnis angeführt, ggfs. löschen
+\printbibliography % Druckt das Literaturverzeichnis aus
+%%% Indices
+\chapter{Indices}
+\printindex[bibel]
+\printindex[antik]
+\printindex[autoren]
+% Dokumentende
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% coding: utf-8-unix
+%%% TeX-master: t
+%%% End:
