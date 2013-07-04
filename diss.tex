@@ -1,10 +1,12 @@
 %%%%%%%%%%%%%%%%% EINSTELLUNGEN %%%%%%%%%%%%%%%
 \documentclass[a4paper,11pt]{memoir}
 \usepackage[no-math]{fontspec}
-\usepackage{polyglossia}
-\setdefaultlanguage[babelshorthands=true]{german}
-\setotherlanguage[variant=ancient]{greek}
-\setotherlanguages{french,english,latin}
+\usepackage[greek,latin,english,french,german,strings=unicode]{babel}
+\languageattribute{greek}{polutoniko}
+\renewcommand{\textgreek}[1]{\bgroup\greekfont #1\egroup}
+\newenvironment{griechisch}
+{\begin{otherlanguage*}{greek}\greekfont}%
+{\end{otherlanguage*}}
 \newfontfamily\greekfont[Mapping=tex-text,Script=Greek,Ligatures=Common]{GFS Didot}
 \setromanfont[Mapping=tex-text,Numbers=Lowercase,Ligatures=Common]{TeX Gyre Pagella}
 \linespread{1.08}
@@ -175,8 +177,11 @@
 }
 \usepackage{longtable,booktabs} % Tabellen
 %%%%%%% Zum Schluß noch Hebräisch (wegen bidi)
-\setotherlanguage{hebrew}
-\newfontfamily\hebrewfont[Mapping=tex-text,Script=Greek,Ligatures=Common]{Ezra SIL}
+\usepackage{bidi}
+\newfontfamily\hebrewfont[Mapping=tex-text,Script=Greek,Ligatures=Common]{Ezra
+  SIL}
+\newcommand{\texthebrew}[1]{\RL{\hebrewfont #1}}
+\newenvironment{hebrew}{\setRL\hebrewfont}{\setLR}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
