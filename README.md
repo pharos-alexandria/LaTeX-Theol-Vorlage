@@ -9,6 +9,5 @@ Vorlage für Theologen
 
 Benötigte Fonts
 ------------
-- Ezra SIL (http://scripts.sil.org/SILHebrUnic2)
-- GFS Didot (http://www.greekfontsociety.gr/GFS_DIDOT_OT.zip)
-- TeX Gyre Pagella (http://www.gust.org.pl/projects/e-foundry/tex-gyre/pagella/index_html)
+- Noto Serif und Noto Sans (http://www.google.com/get/noto/)
+- SBL BibLit (http://www.sbl-site.org/educational/BiblicalFonts_SBLBibLit.aspx)

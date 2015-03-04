@@ -3,13 +3,12 @@
 \usepackage[no-math]{fontspec}
 \usepackage[greek,latin,english,french,german,strings=unicode]{babel}
 \languageattribute{greek}{polutoniko}
-\renewcommand{\textgreek}[1]{\bgroup\greekfont #1\egroup}
 \newenvironment{griechisch}
-{\begin{otherlanguage*}{greek}\greekfont}%
+{\begin{otherlanguage*}{greek}}%
 {\end{otherlanguage*}}
-\newfontfamily\greekfont[Mapping=tex-text,Script=Greek,Ligatures=Common]{GFS Didot}
-\setromanfont[Mapping=tex-text,Numbers=Lowercase,Ligatures=Common]{TeX Gyre Pagella}
-\linespread{1.08}
+\setmainfont{Noto Serif}
+\setsansfont{Noto Sans}
+\newfontfamily\hebrewfont[Script=Hebrew]{SBL BibLit}
 \usepackage[french=guillemets,german=guillemets]{csquotes} % Verwaltung von Anführungszeichen
 \usepackage[backend=biber,style=authortitle-dw,hyperref,edsuper=true,idembib=true,idembibformat=dash,maxnames=4,citetracker=strict,ibidtracker=false,pagetracker=true,terselos=true]{biblatex} % Literaturverwaltung
 \bibliography{diss} % Bibtex-Datenbank
